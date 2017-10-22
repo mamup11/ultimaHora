@@ -23,5 +23,5 @@ fi
 CORES=$(nproc)
 EXAMPLE=1
 #mpiexec -np ${CORES} python ./hello_world${EXAMPLE}.py
-/lib64/openmpi/bin/mpiexec  -np 3 python ./hello_world${EXAMPLE}.py
+mpiexec  -np 3 python ./hello_world${EXAMPLE}.py
 #mpiexec -np 16 python ./hello_world${EXAMPLE}.py

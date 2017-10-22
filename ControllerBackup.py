@@ -99,7 +99,7 @@ def leerArchivo():
     mat = np.empty((len(fdt), len(fdt)))
     for i in range(len(fdt)):
         for j in range(len(fdt)):
-            mat[i][j] = 1 - jaccard_similarity(fdt[i], fdt[j])
+            mat[i][j] = jaccard_similarity(fdt[i], fdt[j])
 
     # jaccard(result)
     print mat
