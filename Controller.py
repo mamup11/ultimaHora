@@ -30,7 +30,26 @@ if rank == 0:
         # print core
         if core == size:
             core = 0
-            for i in range(size):
+            for i in range(size-1):
+                if i != 0:
+                    # print i
+                    # Esperar resultados de cada nodo
+                    data = comm.recv(source=i)
+                    uniques = []
+                    for word in data:
+                        if word in words:
+                            uniques.append(words.get(word))
+                        else:
+                            words.update({word: index})
+                            uniques.append(index)
+                            index += 1
+                    words_map.append(uniques)
+        else:
+            # enviar a cada nodo un libro
+            comm.send(documents + filename, dest=core)
+    if core > 0:
+        for i in range(core):
+            if i != 0:
                 # print i
                 # Esperar resultados de cada nodo
                 data = comm.recv(source=i)
@@ -43,9 +62,6 @@ if rank == 0:
                         uniques.append(index)
                         index += 1
                 words_map.append(uniques)
-        else:
-            # enviar a cada nodo un libro
-            comm.send(documents + filename, dest=core)
     for i in range(size - 1):
         comm.send(-1, dest=i)
 else:
