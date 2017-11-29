@@ -39,6 +39,7 @@ esclavos 	|	comercio
 tragedia 	|	cultivos     
 
 **Diccionario**
+
 Clave		|		Valor
 ------------| -------------
 política 	|	0
